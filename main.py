@@ -145,6 +145,18 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
+
+        if event.type == pygame.KEYDOWN:
+            # ESC tuşuna basınca fareyi serbest bırak ve görünür yap
+            if event.key == pygame.K_ESCAPE:
+                mouse_locked = False
+                pygame.mouse.set_visible(True)
+        
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            # Pencereye tıklandığında fareyi tekrar kilitle
+            if event.button == 1: # Sol tık
+                mouse_locked = True
+                pygame.mouse.set_visible(False)
     move_player()
     # Player
     draw_3d(player_x, player_y, player_angle)
