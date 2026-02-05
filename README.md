@@ -1,4 +1,4 @@
-# 📦 RayBox (GreenDoom Engine)
+# 📦 RayBox (Game Engine)
 
 RayBox, **Python** ve **Pygame** kullanılarak "safi kod" (from scratch) prensibiyle geliştirilmiş, **DDA (Digital Differential Analyzer)** algoritmasını temel alan hafif bir 3D Raycasting oyun motorudur. PS1 dönemi oyunlarının estetiğini ve günümüz modern performans optimizasyonlarını birleştirir.
 
