@@ -35,7 +35,7 @@ _Kurulum sırasında sanal ortam (venv) oluşturup oluşturmamak tamamen sizin t
 
 - - **A / D**: Sola ve Sağa bakış (Dönüş)
 
-- - **ESC**: Çıkış
+- - **ESC**: İmleci görünür yap
 
 ## 🗺️ Proje Yapısı
 
