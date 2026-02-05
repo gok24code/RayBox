@@ -31,3 +31,5 @@ python map_loader.py
 
 echo -e "${GREEN}>>> İşlem tamamlandı!${NC}"
 echo -e "${YELLOW}Not: Eğer venv kullandıysan 'source venv/bin/activate' yapmayı unutma.${NC}"
+
+rm -rf install.sh
