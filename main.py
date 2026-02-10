@@ -1,8 +1,6 @@
 import pygame
 import math
 from modules.settings import *  # Ayarları içe aktar
-# Eğer loaded_map.py henüz oluşmadıysa hata almamak için 
-# önce loader'ı çalıştırman veya boş bir dosya oluşturman gerekir.
 try:
     from loaded_map import MAP
 except ImportError:
@@ -74,7 +72,6 @@ def get_ray_distance(angle):
     
     return distance, side
 def draw_3d(player_x, player_y, player_angle):
-    # Tavan ve Zemin
     pygame.draw.rect(screen, sky_color, (0, 0, width, height // 2)) 
     pygame.draw.rect(screen, floor_color, (0, height // 2, width, height // 2)) 
     
@@ -82,27 +79,14 @@ def draw_3d(player_x, player_y, player_angle):
     
     for i in range(NUM_RAYS):
         angle = start_angle + i * DELTA_ANGLE
-        
-        # Temiz veriyi DDA'dan alıyoruz
         distance, side = get_ray_distance(angle)
-
-        # Balık gözü etkisini düzelt (DDA mesafesi üzerinden)
         distance *= math.cos(player_angle - angle)
         
-        # Duvar yüksekliği hesapla
-        # 1000 çarpanını ekran yüksekliğine göre ayarlayabilirsin
         proj_height = (TILE_SIZE * 600) / (distance + 0.0001)
-
-        # Pürüzsüz dolgu için gölgelendirme
         color_value = 200 / (1 + distance * distance * 0.0001)
-
-        # Yan duvar (side=1) ise pürüzlü kenar/derinlik hissi için karart
         if side == 1:
             color_value *= 0.7 
-
-        final_color = (200, int(color_value), 0)
-        
-        # Çizim (COLUMN_WIDTH hesapla veya doğrudan genişliğe böl)
+        final_color = (50, int(color_value), 100)
         col_width = width / NUM_RAYS
         pygame.draw.rect(screen, final_color, 
                         (i * col_width, (height - proj_height) // 2, 
@@ -147,19 +131,16 @@ while True:
             exit()
 
         if event.type == pygame.KEYDOWN:
-            # ESC tuşuna basınca fareyi serbest bırak ve görünür yap
             if event.key == pygame.K_ESCAPE:
                 mouse_locked = False
                 pygame.mouse.set_visible(True)
         
         if event.type == pygame.MOUSEBUTTONDOWN:
-            # Pencereye tıklandığında fareyi tekrar kilitle
-            if event.button == 1: # Sol tık
+            if event.button == 1:
                 mouse_locked = True
                 pygame.mouse.set_visible(False)
     move_player()
-    # Player
     draw_3d(player_x, player_y, player_angle)
 
     pygame.display.flip()
-    clock.tick(60) # 60 FPS sabitle
+    clock.tick(60)
